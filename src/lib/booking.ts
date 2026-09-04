@@ -5,6 +5,13 @@ type BookingPageParams = {
   back?: string;
 };
 
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+function withBasePath(path: string) {
+  if (!basePath) return path;
+  return path === "/" ? `${basePath}/` : `${basePath}${path}`;
+}
+
 export function bookingPagePath({ campaign, region, item, back }: BookingPageParams = {}) {
   const params = new URLSearchParams();
 
@@ -14,5 +21,5 @@ export function bookingPagePath({ campaign, region, item, back }: BookingPagePar
   if (back) params.set("back", back);
 
   const query = params.toString();
-  return query ? `/book/?${query}` : "/book/";
+  return query ? `${withBasePath("/book/")}?${query}` : withBasePath("/book/");
 }

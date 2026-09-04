@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Region } from "@data/types";
-import { regionPath } from "@lib/seo";
+import { regionPath, withBasePath } from "@lib/seo";
 
 type LocationSelectorProps = {
   regions: Region[];
@@ -11,7 +11,7 @@ export default function LocationSelector({ regions }: LocationSelectorProps) {
 
   function goToLocation() {
     const region = regions.find((candidate) => candidate.slug === value);
-    if (region) window.location.href = regionPath(region);
+    if (region) window.location.href = withBasePath(regionPath(region));
   }
 
   return (

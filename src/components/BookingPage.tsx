@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@data/site";
+import { withBasePath } from "@lib/seo";
 
 type BookingContext = {
   campaign: string;
@@ -113,7 +114,7 @@ export default function BookingPage() {
   return (
     <section className="booking-page" role="region" aria-label="Booking page">
       <header className="booking-page-bar">
-        <a className="booking-back-link" href={context.back}>
+        <a className="booking-back-link" href={withBasePath(context.back)}>
           <span className="material-symbols-rounded" aria-hidden="true">
             arrow_back
           </span>

@@ -9,6 +9,7 @@ import {
   faqSchema,
   itemPath,
   serviceSchema,
+  withBasePath,
 } from "@lib/seo";
 
 const generalFaqs: Faq[] = [
@@ -101,7 +102,10 @@ const schemas = [
         understanding how this referral site works.
       </p>
       <div class="hero-actions">
-        <a class="button button-primary" href="/book/?campaign=faq-page&back=%2Ffaq%2F">
+        <a
+          class="button button-primary"
+          href={withBasePath("/book/?campaign=faq-page&back=%2Ffaq%2F")}
+        >
           <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
           Start booking
         </a>
@@ -164,7 +168,7 @@ const schemas = [
                   <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
                   {item.name}
                 </h3>
-                <a href={itemPath(item)}>
+                <a href={withBasePath(itemPath(item))}>
                   View prep notes
                   <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
                 </a>

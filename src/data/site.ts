@@ -12,5 +12,5 @@ export const siteConfig = {
   bookingPartnerScriptUrl:
     "https://goloadup.com/wp-content/themes/goloadup/js/retail_brand_builder_setup.min.js",
   bookingPartnerIframeBaseUrl: "https://order.goloadup.com/retail/orders/new",
-  defaultImage: "/assets/placeholders/junk-removal-characters.png",
+  defaultImage: `${import.meta.env.BASE_URL}assets/placeholders/junk-removal-characters.png`,
 };

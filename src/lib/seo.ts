@@ -1,8 +1,23 @@
 import { siteConfig } from "@data/site";
 import type { Faq, JunkItem, Region } from "@data/types";
 
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export function withBasePath(path = "/") {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path)) return path;
+
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  if (!basePath) return normalizedPath;
+  if (normalizedPath === "/") return `${basePath}/`;
+  if (normalizedPath === basePath || normalizedPath.startsWith(`${basePath}/`)) {
+    return normalizedPath;
+  }
+
+  return `${basePath}${normalizedPath}`;
+}
+
 export function absoluteUrl(path = "/") {
-  return new URL(path, siteConfig.baseUrl).toString();
+  return new URL(withBasePath(path), siteConfig.baseUrl).toString();
 }
 
 export function regionPath(region: Region) {
@@ -18,7 +33,7 @@ export function organizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.name,
-    url: siteConfig.baseUrl,
+    url: absoluteUrl("/"),
   };
 }
 
@@ -27,7 +42,7 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: siteConfig.name,
-    url: siteConfig.baseUrl,
+    url: absoluteUrl("/"),
   };
 }
 
@@ -40,7 +55,7 @@ export function serviceSchema(name: string, description: string, areaServed?: st
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
-      url: siteConfig.baseUrl,
+      url: absoluteUrl("/"),
     },
     ...(areaServed ? { areaServed } : {}),
   };

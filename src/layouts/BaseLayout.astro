@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "@data/site";
-import { absoluteUrl, jsonLd, organizationSchema, websiteSchema } from "@lib/seo";
+import { absoluteUrl, jsonLd, organizationSchema, websiteSchema, withBasePath } from "@lib/seo";
 
 type Props = {
   title?: string;
@@ -49,7 +49,7 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
       rel="stylesheet"
     />
     {allSchemas.map((schema) => <script type="application/ld+json" set:html={jsonLd(schema)} />)}
-    <script src="/scripts/analytics-events.js" defer></script>
+    <script src={withBasePath("/scripts/analytics-events.js")} defer></script>
   </head>
   <body>
     {
@@ -57,24 +57,24 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
         <>
           <a class="skip-link" href="#main">Skip to content</a>
           <header class="site-header">
-            <a class="brand" href="/" aria-label="Junk Connector home">
+            <a class="brand" href={withBasePath("/")} aria-label="Junk Connector home">
               <span class="brand-mark">JC</span>
               <span>Junk Connector</span>
             </a>
             <nav aria-label="Primary navigation">
-              <a href="/#locations">
+              <a href={withBasePath("/#locations")}>
                 <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
                 <span>Locations</span>
               </a>
-              <a href="/#items">
+              <a href={withBasePath("/#items")}>
                 <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
                 <span>Items</span>
               </a>
-              <a href="/faq/">
+              <a href={withBasePath("/faq/")}>
                 <span class="material-symbols-rounded" aria-hidden="true">help</span>
                 <span>FAQ</span>
               </a>
-              <a href="/book/?campaign=site-nav">
+              <a href={withBasePath("/book/?campaign=site-nav")}>
                 <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
                 <span>Book</span>
               </a>

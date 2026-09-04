@@ -11,6 +11,7 @@ import {
   itemPath,
   regionPath,
   serviceSchema,
+  withBasePath,
 } from "@lib/seo";
 
 const schemas = [
@@ -78,7 +79,7 @@ const schemas = [
                 {region.city}, {region.state}
               </h3>
               <p>{region.serviceAreaNote}</p>
-              <a href={regionPath(region)}>
+              <a href={withBasePath(regionPath(region))}>
                 View booking guide
                 <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
               </a>
@@ -108,7 +109,7 @@ const schemas = [
                 {item.name}
               </h3>
               <p>{item.description}</p>
-              <a href={itemPath(item)}>
+              <a href={withBasePath(itemPath(item))}>
                 View prep notes
                 <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
               </a>
