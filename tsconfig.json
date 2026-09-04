@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@data/*": ["src/data/*"],
+      "@lib/*": ["src/lib/*"]
+    }
+  },
+  "include": ["src/**/*", "scripts/**/*", "tests/**/*", "astro.config.mjs", "playwright.config.ts"],
+  "exclude": ["archive", "dist", "node_modules", "output", "generated"]
+}

@@ -1,0 +1,27 @@
+---
+import BookingPage from "@components/BookingPage";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { siteConfig } from "@data/site";
+import { breadcrumbSchema, serviceSchema } from "@lib/seo";
+
+const schemas = [
+  serviceSchema(
+    "Sponsored junk removal booking",
+    "A sponsored booking page for starting a junk removal pickup request through a booking partner.",
+  ),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Book", path: "/book/" },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`Book Junk Removal Online | ${siteConfig.name}`}
+  description="Start a sponsored junk removal booking with Junk Connector attribution preserved."
+  canonicalPath="/book/"
+  schemas={schemas}
+  hideChrome
+>
+  <BookingPage client:load />
+</BaseLayout>

@@ -1,0 +1,179 @@
+---
+import FAQAccordion from "@components/FAQAccordion";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { junkItems } from "@data/items";
+import { siteConfig } from "@data/site";
+import type { Faq } from "@data/types";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  itemPath,
+  serviceSchema,
+} from "@lib/seo";
+
+const generalFaqs: Faq[] = [
+  {
+    question: "What is Junk Connector?",
+    answer:
+      "Junk Connector is a referral publisher that helps visitors find relevant junk removal booking guides and start a sponsored online booking flow.",
+  },
+  {
+    question: "Does Junk Connector provide the hauling service?",
+    answer:
+      "No. Junk Connector does not provide hauling service directly. Service availability, pricing, scheduling, pickup details, and the actual job are handled by the sponsored booking partner.",
+  },
+  {
+    question: "Can I book junk removal without calling?",
+    answer:
+      "Yes. Start from a location or item guide, then use the booking flow to enter your ZIP code, items, access details, and pickup preferences.",
+  },
+  {
+    question: "Why do item counts and access details matter?",
+    answer:
+      "Accurate item counts, stairs, elevators, parking limits, curbside placement, and building rules help the booking partner confirm availability and reduce pricing or pickup issues later.",
+  },
+  {
+    question: "Can usable items be donated or recycled?",
+    answer:
+      "Reusable or regulated items should be described accurately during booking. Donation and recycling outcomes depend on item type, condition, local availability, and service partner rules.",
+  },
+];
+
+const pricingFaqs: Faq[] = [
+  {
+    question: "How does online junk removal pricing work?",
+    answer:
+      "The booking flow checks local availability first, then asks for the items you need removed so it can calculate a quote before you continue scheduling.",
+  },
+  {
+    question: "What information is needed for a pricing quote?",
+    answer:
+      "Start with your ZIP code, then select the junk items, quantities, pickup location, and access details that apply to the job.",
+  },
+  {
+    question: "When do I see the price?",
+    answer:
+      "Pricing is shown during the booking flow after the location and item details are entered. Review the total before moving forward with pickup scheduling.",
+  },
+  {
+    question: "Can adding more than one item affect the total?",
+    answer:
+      "Yes. The booking flow may update the total as items are added, so enter the full item list before deciding whether the quote works for you.",
+  },
+  {
+    question: "Does a quote confirm service availability?",
+    answer:
+      "Availability is checked through the booking flow based on ZIP code, item details, and scheduling options. Final availability depends on the booking partner.",
+  },
+];
+
+const allFaqs = [
+  ...generalFaqs,
+  ...pricingFaqs,
+  ...junkItems.flatMap((item) => item.faqs),
+];
+
+const schemas = [
+  serviceSchema(
+    "Junk removal booking FAQ",
+    "Frequently asked questions about online junk removal booking, service areas, item prep, and referral disclosures.",
+  ),
+  faqSchema(allFaqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "FAQ", path: "/faq/" },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`Junk Removal Booking FAQ | ${siteConfig.name}`}
+  description="Answers about online junk removal booking, item prep, local service-area details, pricing, availability, and Junk Connector's referral role."
+  canonicalPath="/faq/"
+  schemas={schemas}
+>
+  <section class="hero hero-compact">
+    <div class="hero-copy">
+      <p class="eyebrow">Questions and booking basics</p>
+      <h1>Junk removal FAQ</h1>
+      <p class="lede">
+        Clear answers about booking online, preparing bulky items, adding access notes, and
+        understanding how this referral site works.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/book/?campaign=faq-page&back=%2Ffaq%2F">
+          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+          Start booking
+        </a>
+        <a class="button button-secondary" href="#pricing">
+          <span class="material-symbols-rounded" aria-hidden="true">help</span>
+          Browse questions
+        </a>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <img
+        src={siteConfig.defaultImage}
+        alt="Junk removal themed characters ready for bulky item pickup"
+        width="1392"
+        height="768"
+        loading="eager"
+      />
+    </figure>
+  </section>
+
+  <section class="section" id="general">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">General</p>
+        <h2>Booking and referral questions</h2>
+      </div>
+      <FAQAccordion faqs={generalFaqs} client:load />
+    </div>
+  </section>
+
+  <section class="section section-muted" id="pricing">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Pricing</p>
+        <h2>Quote and pricing questions</h2>
+        <p class="lede">
+          Online pricing depends on ZIP code, selected items, quantities, access details, and
+          scheduling availability.
+        </p>
+      </div>
+      <FAQAccordion faqs={pricingFaqs} client:load />
+    </div>
+  </section>
+
+  <section class="section section-muted" id="items">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Items</p>
+        <h2>Bulky-item questions</h2>
+        <p class="lede">
+          Item-specific answers focus on what to count, disclose, and prepare before booking.
+        </p>
+      </div>
+      <div class="faq-group-list">
+        {
+          junkItems.map((item) => (
+            <section class="faq-group" aria-labelledby={`faq-${item.slug}`}>
+              <div class="faq-group-heading">
+                <h3 id={`faq-${item.slug}`}>
+                  <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
+                  {item.name}
+                </h3>
+                <a href={itemPath(item)}>
+                  View prep notes
+                  <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                </a>
+              </div>
+              <FAQAccordion faqs={item.faqs} client:load />
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

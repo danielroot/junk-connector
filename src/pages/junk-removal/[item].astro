@@ -1,0 +1,111 @@
+---
+import BookingModule from "@components/BookingModule";
+import FAQAccordion from "@components/FAQAccordion";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { junkItems } from "@data/items";
+import { bookingPagePath } from "@lib/booking";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  itemPath,
+  serviceSchema,
+} from "@lib/seo";
+
+export function getStaticPaths() {
+  return junkItems.map((item) => ({
+    params: {
+      item: item.slug,
+    },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const canonicalPath = itemPath(item);
+const schemas = [
+  serviceSchema(item.title, item.description),
+  faqSchema(item.faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Junk Removal", path: "/#items" },
+    { name: item.name, path: canonicalPath },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`${item.title} | Junk Connector`}
+  description={item.description}
+  canonicalPath={canonicalPath}
+  image={item.heroImage}
+  schemas={schemas}
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Item booking guide</p>
+      <h1>{item.title}</h1>
+      <p class="lede">{item.description}</p>
+      <div class="hero-actions">
+        <a
+          class="button button-primary"
+          href={bookingPagePath({
+            campaign: item.slug,
+            item: item.bookingIntent,
+            back: canonicalPath,
+          })}
+        >
+          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+          Start booking
+        </a>
+        <a class="button button-secondary" href="#prep">
+          <span class="material-symbols-rounded" aria-hidden="true">checklist</span>
+          Prep notes
+        </a>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <img src={item.heroImage} alt={item.imageAlt} width="1392" height="768" loading="eager" />
+    </figure>
+  </section>
+
+  <section class="section" id="prep">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Before booking</p>
+        <h2>Prep notes for {item.name.toLowerCase()}</h2>
+      </div>
+      <div class="card-grid">
+        {
+          item.prepNotes.map((note) => (
+            <article class="card">
+              <span class="card-icon material-symbols-rounded" aria-hidden="true">task_alt</span>
+              <p>{note}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="booking">
+    <div class="section-inner">
+      <BookingModule
+        client:load
+        title={`Start a ${item.name.toLowerCase()} booking`}
+        campaign={item.slug}
+        item={item.bookingIntent}
+        back={`${canonicalPath}#booking`}
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Questions</p>
+        <h2>{item.name} FAQ</h2>
+      </div>
+      <FAQAccordion faqs={item.faqs} client:load />
+    </div>
+  </section>
+</BaseLayout>

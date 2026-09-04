@@ -1,0 +1,131 @@
+---
+import BookingModule from "@components/BookingModule";
+import LocationSelector from "@components/LocationSelector";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { approvedRegions } from "@data/regions";
+import { junkItems } from "@data/items";
+import { siteConfig } from "@data/site";
+import { bookingPagePath } from "@lib/booking";
+import {
+  breadcrumbSchema,
+  itemPath,
+  regionPath,
+  serviceSchema,
+} from "@lib/seo";
+
+const schemas = [
+  serviceSchema(
+    "Online junk removal booking referral",
+    "A referral website that helps visitors start sponsored junk removal bookings online.",
+  ),
+  breadcrumbSchema([{ name: "Home", path: "/" }]),
+];
+---
+
+<BaseLayout
+  title={siteConfig.defaultTitle}
+  description={siteConfig.defaultDescription}
+  canonicalPath="/"
+  schemas={schemas}
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Junk removal booking, region by region</p>
+      <h1>Book junk removal online</h1>
+      <p class="lede">
+        Find a service area, review item prep notes, then start a sponsored booking flow with
+        attribution preserved for commission tracking.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href={bookingPagePath({ campaign: "homepage", back: "/" })}>
+          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+          Start booking
+        </a>
+        <a class="button button-secondary" href="#locations">
+          <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+          View locations
+        </a>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <img
+        src={siteConfig.defaultImage}
+        alt="Junk removal themed characters holding furniture and bagged items"
+        width="1392"
+        height="768"
+        loading="eager"
+      />
+    </figure>
+  </section>
+
+  <section class="section section-muted" id="locations">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Approved launch markets</p>
+        <h2>Regional pages with real local signals</h2>
+        <p class="lede">
+          Each page ships only after it has specific service-area context, local disposal or
+          donation notes, and a reviewed image prompt.
+        </p>
+      </div>
+      <LocationSelector regions={approvedRegions} client:load />
+      <div class="card-grid" style="margin-top: 1.5rem;">
+        {
+          approvedRegions.map((region) => (
+            <article class="card">
+              <h3>
+                <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+                {region.city}, {region.state}
+              </h3>
+              <p>{region.serviceAreaNote}</p>
+              <a href={regionPath(region)}>
+                View booking guide
+                <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="items">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Book by item</p>
+        <h2>Common junk removal jobs</h2>
+        <p class="lede">
+          Item pages target specific booking intent without pretending to provide local service
+          directly.
+        </p>
+      </div>
+      <div class="card-grid">
+        {
+          junkItems.map((item) => (
+            <article class="card">
+              <h3>
+                <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
+                {item.name}
+              </h3>
+              <p>{item.description}</p>
+              <a href={itemPath(item)}>
+                View prep notes
+                <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="booking">
+    <div class="section-inner">
+      <BookingModule
+        client:load
+        campaign="homepage"
+        back="/#booking"
+      />
+    </div>
+  </section>
+</BaseLayout>
