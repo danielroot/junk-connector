@@ -106,7 +106,7 @@ const schemas = [
               href={withBasePath(itemPath(item))}
               title={item.name}
               description={item.description}
-              icon="inventory_2"
+              icon={item.slug === "mattress-removal" ? "bed" : "inventory_2"}
               linkLabel="View prep notes"
             />
           ))
