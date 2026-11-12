@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("homepage exposes booking and approved regions", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Book junk removal online" })).toBeVisible();
-  await page.getByRole("link", { name: "Start booking", exact: true }).click();
+  await page.getByRole("link", { name: "Get a Free Quote", exact: true }).click();
   await expect(page).toHaveURL(/\/book\/\?campaign=homepage&back=%2F$/);
   await expect(page.getByRole("region", { name: "Booking page" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Back to guide" })).toHaveAttribute("href", "/");
