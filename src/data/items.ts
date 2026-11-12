@@ -7,7 +7,7 @@ export const junkItems: JunkItem[] = [
     name: "Mattress Removal",
     title: "Book Mattress Removal Online",
     description:
-      "Start an online booking for mattress pickup and disposal through a sponsored booking flow.",
+      "Get ready for mattress pickup and start booking removal online.",
     heroImage: siteConfig.defaultImage,
     imageAlt: "Junk removal themed characters prepared for bulky-item pickup",
     bookingIntent: "mattress-removal",
@@ -20,7 +20,7 @@ export const junkItems: JunkItem[] = [
       {
         question: "Can I book mattress removal without calling?",
         answer:
-          "Yes. Use the booking module to enter item and access details, then confirm partner availability.",
+          "Yes. Use the online booking form to enter item and access details, then check local availability.",
       },
       {
         question: "Can a box spring be included?",
@@ -34,7 +34,7 @@ export const junkItems: JunkItem[] = [
     name: "Furniture Removal",
     title: "Book Furniture Removal Online",
     description:
-      "Start an online booking for sofa, table, desk, and bulky furniture removal through a sponsored booking flow.",
+      "Prepare sofas, tables, desks, and other bulky furniture, then start booking removal online.",
     heroImage: siteConfig.defaultImage,
     imageAlt: "Junk removal themed characters moving household furniture",
     bookingIntent: "furniture-removal",
@@ -61,7 +61,7 @@ export const junkItems: JunkItem[] = [
     name: "Appliance Removal",
     title: "Book Appliance Removal Online",
     description:
-      "Start an online booking for appliance removal through a sponsored booking flow.",
+      "Review appliance pickup requirements and start booking removal online.",
     heroImage: siteConfig.defaultImage,
     imageAlt: "Junk removal themed characters with appliance and household junk",
     bookingIntent: "appliance-removal",

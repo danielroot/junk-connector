@@ -12,7 +12,7 @@ type Props = {
 
 const {
   title = "Start your junk removal booking",
-  description = "Enter your details with the sponsored booking partner to confirm availability, pricing, and pickup options.",
+  description = "Enter your details to check local availability, pricing, and pickup options.",
   campaign,
   region,
   item,
@@ -32,7 +32,7 @@ const href = bookingPagePath({ campaign, region, item, back });
     <h2 id={`booking-heading-${campaign}`}>{title}</h2>
     <p>{description}</p>
     <p class="booking-disclosure">
-      Booking, pricing, service availability, and pickup details are handled by the partner.
+      Booking, pricing, availability, and pickup service are provided by our third-party partner.
     </p>
   </div>
 

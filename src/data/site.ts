@@ -4,9 +4,9 @@ export const siteConfig = {
   gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",
   defaultTitle: "Junk Connector | Book Junk Removal Online",
   defaultDescription:
-    "Compare local junk removal options and start an online booking through a sponsored booking flow.",
+    "Find local junk removal information, prepare your items, and start booking a pickup online.",
   affiliateDisclosure:
-    "Junk Connector may earn a commission when you book through sponsored partner links or booking modules on this site.",
+    "Junk Connector may earn a commission when you book through partner links on this site.",
   bookingPartnerAffiliateBaseUrl: "https://goloadup.com/affiliate/",
   bookingPartnerId: "replace-with-booking-partner-id",
   bookingPartnerAttributionSource: "replace-with-booking-partner-attribution-source",

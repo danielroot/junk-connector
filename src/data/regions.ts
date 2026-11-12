@@ -13,9 +13,9 @@ export const regions: Region[] = [
       "Photo-real junk removal crew loading furniture into a truck on a Chicago residential street, no landmarks, no logos, truthful service scene.",
     title: "Book Junk Removal in Chicago, IL",
     description:
-      "Start an online junk removal booking for Chicago homes, apartments, alley pickups, and move-out cleanouts through a sponsored booking flow.",
+      "Book junk removal online for Chicago homes, apartments, alley pickups, and move-out cleanouts.",
     serviceAreaNote:
-      "Useful for apartments, condos, alley pickups, curbside piles, and multi-unit move-out projects where partner service is available.",
+      "Explore pickup guidance for apartments, condos, alley access, curbside piles, and multi-unit move-outs.",
     localSignals: [
       {
         icon: "apartment",
@@ -49,7 +49,7 @@ export const regions: Region[] = [
       {
         question: "Can I book junk removal online in Chicago?",
         answer:
-          "Yes. Start with the booking module and enter your ZIP code, items, access details, and pickup preferences to confirm availability.",
+          "Yes. Open the online booking form and enter your ZIP code, items, access details, and pickup preferences to confirm availability.",
       },
       {
         question: "What access details should I include?",
@@ -59,7 +59,7 @@ export const regions: Region[] = [
       {
         question: "Does Junk Connector provide the hauling service?",
         answer:
-          "No. Junk Connector is a publisher and referral site. Booking and service details are handled by the sponsored booking partner.",
+          "No. Junk Connector provides booking guides and connects you with a third-party service provider that handles the pickup.",
       },
     ],
     bookingTracking: {
@@ -79,9 +79,9 @@ export const regions: Region[] = [
       "Photo-real junk removal crew removing old furniture from an Atlanta residential driveway, no skyline, no logos, truthful service scene.",
     title: "Book Junk Removal in Atlanta, GA",
     description:
-      "Start an online booking for Atlanta furniture removal, garage cleanouts, and household junk pickup through a sponsored booking flow.",
+      "Book furniture removal, garage cleanouts, and household junk pickup online in Atlanta.",
     serviceAreaNote:
-      "Useful for driveway pickups, garage cleanouts, apartment moves, and bulky-item removal where partner service is available.",
+      "Explore pickup guidance for driveways, garage cleanouts, apartment moves, and bulky items.",
     localSignals: [
       {
         icon: "garage_home",
@@ -105,7 +105,7 @@ export const regions: Region[] = [
       "Bagged household junk",
     ],
     donationRecyclingNote:
-      "Reusable items should be described accurately during booking so the service partner can route the job appropriately when options exist.",
+      "Describe reusable items accurately during booking so the service provider can review any available donation or recycling options.",
     commonScenarios: [
       "Clearing bulky furniture after a move",
       "Removing old patio sets before listing a home",
@@ -125,7 +125,7 @@ export const regions: Region[] = [
       {
         question: "Is this a local Atlanta junk company?",
         answer:
-          "Junk Connector is not a local hauling company. It connects visitors to a sponsored booking partner where available.",
+          "Junk Connector does not perform hauling services. We provide local booking information and connect you with a third-party service provider where available.",
       },
     ],
     bookingTracking: {
@@ -145,9 +145,9 @@ export const regions: Region[] = [
       "Photo-real junk removal crew loading a mattress and boxes from a Denver home driveway, no mountains, no logos, truthful service scene.",
     title: "Book Junk Removal in Denver, CO",
     description:
-      "Start an online junk removal booking for Denver mattress removal, furniture pickup, and garage cleanouts through a sponsored booking flow.",
+      "Book mattress removal, furniture pickup, and garage cleanouts online in Denver.",
     serviceAreaNote:
-      "Useful for bulky-item pickup, garage cleanouts, storage cleanouts, and move-related removal where partner service is available.",
+      "Explore pickup guidance for bulky items, garages, storage spaces, and move-related cleanouts.",
     localSignals: [
       {
         icon: "weather_snowy",
@@ -186,12 +186,12 @@ export const regions: Region[] = [
       {
         question: "Can I book mattress removal online?",
         answer:
-          "Yes, start in the booking module and enter your ZIP code, mattress type, quantity, and pickup location.",
+          "Yes. Open the online booking form and enter your ZIP code, mattress type, quantity, and pickup location.",
       },
       {
         question: "Who handles the actual pickup?",
         answer:
-          "The sponsored booking partner handles service availability, pricing, scheduling, and pickup details.",
+          "The third-party service provider handles availability, pricing, scheduling, and pickup details.",
       },
     ],
     bookingTracking: {

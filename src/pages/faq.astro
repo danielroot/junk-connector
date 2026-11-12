@@ -16,12 +16,12 @@ const generalFaqs: Faq[] = [
   {
     question: "What is Junk Connector?",
     answer:
-      "Junk Connector is a referral publisher that helps visitors find relevant junk removal booking guides and start a sponsored online booking flow.",
+      "Junk Connector is an online guide that helps you prepare for junk removal and connect with a third-party booking partner.",
   },
   {
     question: "Does Junk Connector provide the hauling service?",
     answer:
-      "No. Junk Connector does not provide hauling service directly. Service availability, pricing, scheduling, pickup details, and the actual job are handled by the sponsored booking partner.",
+      "No. Junk Connector does not perform hauling services. Availability, pricing, scheduling, and pickup are handled by the third-party service provider.",
   },
   {
     question: "Can I book junk removal without calling?",
@@ -77,7 +77,7 @@ const allFaqs = [
 const schemas = [
   serviceSchema(
     "Junk removal booking FAQ",
-    "Frequently asked questions about online junk removal booking, service areas, item prep, and referral disclosures.",
+    "Frequently asked questions about online junk removal booking, service areas, item preparation, and pricing.",
   ),
   faqSchema(allFaqs),
   breadcrumbSchema([
@@ -89,7 +89,7 @@ const schemas = [
 
 <BaseLayout
   title={`Junk Removal Booking FAQ | ${siteConfig.name}`}
-  description="Answers about online junk removal booking, item prep, local service-area details, pricing, availability, and Junk Connector's referral role."
+  description="Answers about online junk removal booking, item preparation, local service areas, pricing, and availability."
   canonicalPath="/faq/"
   schemas={schemas}
 >
@@ -98,8 +98,8 @@ const schemas = [
       <p class="eyebrow">Questions and booking basics</p>
       <h1>Junk removal FAQ</h1>
       <p class="lede">
-        Clear answers about booking online, preparing bulky items, adding access notes, and
-        understanding how this referral site works.
+        Clear answers about booking online, preparing bulky items, adding access notes, pricing,
+        and service availability.
       </p>
       <div class="hero-actions">
         <a
@@ -132,7 +132,7 @@ const schemas = [
     <div class="section-inner">
       <div class="section-header">
         <p class="eyebrow">General</p>
-        <h2>Booking and referral questions</h2>
+        <h2>Booking and service questions</h2>
       </div>
       <FAQList faqs={generalFaqs} />
     </div>
