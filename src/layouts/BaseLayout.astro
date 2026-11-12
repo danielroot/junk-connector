@@ -115,12 +115,14 @@ const currentYear = new Date().getFullYear();
             <a href={withBasePath("/faq/")}>FAQ</a>
             <a href={withBasePath("/book/?campaign=footer")}>Book Now</a>
           </nav>
-          <p>{siteConfig.affiliateDisclosure}</p>
-          <p>
-            Junk Connector is a referral publisher, not a hauling company. Service, pricing, and
-            availability are controlled by the sponsored booking partner.
-          </p>
           <p class="footer-copyright">© {currentYear} Junk Connector. All rights reserved.</p>
+          <div class="footer-legal">
+            <p>{siteConfig.affiliateDisclosure}</p>
+            <p>
+              Junk Connector is a referral publisher, not a hauling company. Service, pricing, and
+              availability are controlled by the sponsored booking partner.
+            </p>
+          </div>
         </footer>
       )
     }
@@ -794,7 +796,12 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-copyright {
-    padding-top: 0.65rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-legal {
+    font-size: 11px;
+    line-height: 1.45;
   }
 
   @media (max-width: 860px) {
