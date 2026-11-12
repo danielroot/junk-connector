@@ -1,5 +1,6 @@
 ---
 import { bookingPagePath } from "@lib/booking";
+import { siteConfig } from "@data/site";
 
 type Props = {
   title?: string;
@@ -36,6 +37,17 @@ const href = bookingPagePath({ campaign, region, item, back });
       Booking, pricing, service availability, and pickup details are handled by the partner.
     </p>
   </div>
+
+  <span class="booking-module-art" aria-hidden="true">
+    <img
+      src={siteConfig.defaultImage}
+      alt=""
+      width="1200"
+      height="655"
+      loading="lazy"
+      decoding="async"
+    />
+  </span>
 
   <div class="booking-actions">
     <span class="button button-primary">Book Now</span>
