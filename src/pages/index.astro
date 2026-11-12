@@ -75,17 +75,17 @@ const schemas = [
       <div class="card-grid" style="margin-top: 1.5rem;">
         {
           approvedRegions.map((region) => (
-            <article class="card">
+            <a class="card card-link" href={withBasePath(regionPath(region))}>
               <h3>
                 <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
                 {region.city}, {region.state}
               </h3>
               <p>{region.serviceAreaNote}</p>
-              <a href={withBasePath(regionPath(region))}>
+              <span class="card-link-label">
                 View booking guide
                 <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
-              </a>
-            </article>
+              </span>
+            </a>
           ))
         }
       </div>

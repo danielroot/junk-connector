@@ -474,6 +474,33 @@ const currentYear = new Date().getFullYear();
     text-decoration-thickness: 2px;
   }
 
+  .card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+
+  .card-link:hover {
+    border-color: #8fc9c2;
+    box-shadow: 0 8px 24px rgba(24, 32, 31, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .card-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .card-link-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--primary-dark);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
   .pill-list {
     padding: 0;
     margin: 1rem 0 0;
@@ -652,6 +679,7 @@ const currentYear = new Date().getFullYear();
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .card-link,
     .booking-iframe,
     .booking-loading,
     .booking-loading-spinner {
