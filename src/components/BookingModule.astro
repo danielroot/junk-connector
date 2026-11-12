@@ -22,7 +22,12 @@ const {
 const href = bookingPagePath({ campaign, region, item, back });
 ---
 
-<section class="booking-module" aria-labelledby={`booking-heading-${campaign}`}>
+<a
+  class="booking-module booking-module-link"
+  href={href}
+  aria-labelledby={`booking-heading-${campaign}`}
+  data-analytics-event="booking_click"
+>
   <div class="booking-copy">
     <p class="eyebrow">Sponsored booking partner</p>
     <h2 id={`booking-heading-${campaign}`}>{title}</h2>
@@ -33,8 +38,6 @@ const href = bookingPagePath({ campaign, region, item, back });
   </div>
 
   <div class="booking-actions">
-    <a class="button button-primary" href={href} data-analytics-event="booking_click">
-      Book Now
-    </a>
+    <span class="button button-primary">Book Now</span>
   </div>
-</section>
+</a>
