@@ -29,7 +29,7 @@ test("location page has local signals and booking module", async ({ page }) => {
   await page.goto("/locations/il/chicago/");
   await expect(page.getByRole("heading", { name: "Book Junk Removal in Chicago, IL" })).toBeVisible();
   await expect(page.getByText("Apartment and condo cleanouts")).toBeVisible();
-  await page.locator(".booking-module").getByRole("link", { name: "Book", exact: true }).click();
+  await page.locator(".booking-module").getByRole("link", { name: "Book Now", exact: true }).click();
   await expect(page).toHaveURL(
     /\/book\/\?campaign=chicago-il&region=chicago&back=%2Flocations%2Fil%2Fchicago%2F%23booking$/,
   );

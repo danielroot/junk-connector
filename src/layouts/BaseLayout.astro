@@ -90,9 +90,9 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
                 <span class="material-symbols-rounded" aria-hidden="true">help</span>
                 <span>FAQ</span>
               </a>
-              <a href={withBasePath("/book/?campaign=site-nav")}>
+              <a class="nav-book-button" href={withBasePath("/book/?campaign=site-nav")}>
                 <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
-                <span>Book</span>
+                <span>Book Now</span>
               </a>
             </nav>
           </header>
@@ -240,6 +240,19 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
 
   .site-header nav a:hover {
     color: var(--primary-dark);
+  }
+
+  .site-header nav .nav-book-button {
+    min-height: 2.65rem;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    background: var(--primary);
+    color: white;
+  }
+
+  .site-header nav .nav-book-button:hover {
+    background: var(--primary-dark);
+    color: white;
   }
 
   .hero,
