@@ -47,6 +47,10 @@ const schemas = [
       <h1>{region.title}</h1>
       <p class="lede">{region.description}</p>
       <div class="hero-actions">
+        <a class="button button-secondary" href="#local-notes">
+          <span class="material-symbols-rounded" aria-hidden="true">info</span>
+          Local notes
+        </a>
         <a
           class="button button-primary"
           href={bookingPagePath({
@@ -57,10 +61,6 @@ const schemas = [
         >
           <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
           Start booking
-        </a>
-        <a class="button button-secondary" href="#local-notes">
-          <span class="material-symbols-rounded" aria-hidden="true">info</span>
-          Local notes
         </a>
       </div>
     </div>
