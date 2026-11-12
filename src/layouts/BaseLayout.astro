@@ -24,6 +24,7 @@ const {
 const canonicalUrl = absoluteUrl(canonicalPath);
 const imageUrl = absoluteUrl(image);
 const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -107,11 +108,19 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
     {
       !hideChrome && (
         <footer class="site-footer">
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href={withBasePath("/")}>Home</a>
+            <a href={withBasePath("/#locations")}>Locations</a>
+            <a href={withBasePath("/#items")}>Items</a>
+            <a href={withBasePath("/faq/")}>FAQ</a>
+            <a href={withBasePath("/book/?campaign=footer")}>Book Now</a>
+          </nav>
           <p>{siteConfig.affiliateDisclosure}</p>
           <p>
             Junk Connector is a referral publisher, not a hauling company. Service, pricing, and
             availability are controlled by the sponsored booking partner.
           </p>
+          <p class="footer-copyright">© {currentYear} Junk Connector. All rights reserved.</p>
         </footer>
       )
     }
@@ -758,7 +767,34 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
   }
 
   .site-footer {
-    border-top: 1px solid var(--line);
+    border-top: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .footer-nav a {
+    color: var(--primary-dark);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .site-footer p {
+    margin: 0.45rem 0;
+  }
+
+  .footer-copyright {
+    padding-top: 0.65rem;
   }
 
   @media (max-width: 860px) {
