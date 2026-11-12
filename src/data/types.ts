@@ -14,7 +14,10 @@ export type Region = {
   title: string;
   description: string;
   serviceAreaNote: string;
-  localSignals: string[];
+  localSignals: Array<{
+    icon: string;
+    text: string;
+  }>;
   acceptedCategories: string[];
   donationRecyclingNote: string;
   commonScenarios: string[];

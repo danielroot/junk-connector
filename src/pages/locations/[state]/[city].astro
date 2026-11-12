@@ -88,8 +88,10 @@ const schemas = [
         {
           region.localSignals.map((signal) => (
             <article class="card">
-              <span class="card-icon material-symbols-rounded" aria-hidden="true">near_me</span>
-              <p>{signal}</p>
+              <span class="card-icon material-symbols-rounded" aria-hidden="true">
+                {signal.icon}
+              </span>
+              <p>{signal.text}</p>
             </article>
           ))
         }

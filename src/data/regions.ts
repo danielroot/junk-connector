@@ -17,9 +17,18 @@ export const regions: Region[] = [
     serviceAreaNote:
       "Useful for apartments, condos, alley pickups, curbside piles, and multi-unit move-out projects where partner service is available.",
     localSignals: [
-      "Apartment and condo cleanouts often need elevator, loading zone, or alley access details before booking.",
-      "Late spring and summer move-out periods can create higher demand around rentals and multi-unit buildings.",
-      "Reusable furniture may be eligible for local donation routes when condition and timing allow.",
+      {
+        icon: "apartment",
+        text: "Apartment and condo cleanouts often need elevator, loading zone, or alley access details before booking.",
+      },
+      {
+        icon: "calendar_month",
+        text: "Late spring and summer move-out periods can create higher demand around rentals and multi-unit buildings.",
+      },
+      {
+        icon: "volunteer_activism",
+        text: "Reusable furniture may be eligible for local donation routes when condition and timing allow.",
+      },
     ],
     acceptedCategories: [
       "Furniture",
@@ -74,9 +83,18 @@ export const regions: Region[] = [
     serviceAreaNote:
       "Useful for driveway pickups, garage cleanouts, apartment moves, and bulky-item removal where partner service is available.",
     localSignals: [
-      "Driveway and garage cleanouts are common around suburban moves and renovation projects.",
-      "Booking details should separate curbside items from items that need in-home removal.",
-      "Donation may be a fit for clean furniture, working appliances, or reusable household goods.",
+      {
+        icon: "garage_home",
+        text: "Driveway and garage cleanouts are common around suburban moves and renovation projects.",
+      },
+      {
+        icon: "move_down",
+        text: "Booking details should separate curbside items from items that need in-home removal.",
+      },
+      {
+        icon: "volunteer_activism",
+        text: "Donation may be a fit for clean furniture, working appliances, or reusable household goods.",
+      },
     ],
     acceptedCategories: [
       "Couches",
@@ -131,9 +149,18 @@ export const regions: Region[] = [
     serviceAreaNote:
       "Useful for bulky-item pickup, garage cleanouts, storage cleanouts, and move-related removal where partner service is available.",
     localSignals: [
-      "Snow, steep driveways, and alley access can affect pickup logistics during colder months.",
-      "Garage and storage cleanouts are common before moves, renovations, and seasonal gear changes.",
-      "Reusable furniture and working appliances should be separated from broken or damaged items when possible.",
+      {
+        icon: "weather_snowy",
+        text: "Snow, steep driveways, and alley access can affect pickup logistics during colder months.",
+      },
+      {
+        icon: "inventory_2",
+        text: "Garage and storage cleanouts are common before moves, renovations, and seasonal gear changes.",
+      },
+      {
+        icon: "recycling",
+        text: "Reusable furniture and working appliances should be separated from broken or damaged items when possible.",
+      },
     ],
     acceptedCategories: [
       "Mattresses",
