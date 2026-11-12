@@ -89,32 +89,32 @@ const currentYear = new Date().getFullYear();
               <span>Junk Connector</span>
             </a>
             <nav aria-label="Primary navigation">
-              <details class="nav-menu">
-                <summary>
+              <div class="nav-menu" data-nav-menu>
+                <button class="nav-menu-trigger" type="button" aria-expanded="false">
                   <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
                   <span>Locations</span>
                   <span class="nav-menu-chevron material-symbols-rounded" aria-hidden="true">expand_more</span>
-                </summary>
+                </button>
                 <div class="nav-dropdown">
                   <a class="nav-dropdown-all" href={withBasePath("/#locations")}>View all locations</a>
                   {approvedRegions.map((region) => (
                     <a href={withBasePath(regionPath(region))}>{region.city}, {region.stateCode.toUpperCase()}</a>
                   ))}
                 </div>
-              </details>
-              <details class="nav-menu">
-                <summary>
+              </div>
+              <div class="nav-menu" data-nav-menu>
+                <button class="nav-menu-trigger" type="button" aria-expanded="false">
                   <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
                   <span>Items for Removal</span>
                   <span class="nav-menu-chevron material-symbols-rounded" aria-hidden="true">expand_more</span>
-                </summary>
+                </button>
                 <div class="nav-dropdown">
                   <a class="nav-dropdown-all" href={withBasePath("/#items")}>View all items</a>
                   {junkItems.map((item) => (
                     <a href={withBasePath(itemPath(item))}>{item.name}</a>
                   ))}
                 </div>
-              </details>
+              </div>
               <a href={withBasePath("/faq/")}>
                 <span class="material-symbols-rounded" aria-hidden="true">help</span>
                 <span>FAQ</span>
@@ -125,6 +125,41 @@ const currentYear = new Date().getFullYear();
               </a>
             </nav>
           </header>
+          <script is:inline>
+            document.querySelectorAll("[data-nav-menu]").forEach((menu) => {
+              const trigger = menu.querySelector(".nav-menu-trigger");
+              if (!(trigger instanceof HTMLButtonElement)) return;
+
+              const setOpen = (open) => {
+                menu.classList.toggle("is-open", open);
+                trigger.setAttribute("aria-expanded", String(open));
+              };
+
+              trigger.addEventListener("click", () => {
+                const willOpen = !menu.classList.contains("is-open");
+                document.querySelectorAll("[data-nav-menu].is-open").forEach((openMenu) => {
+                  if (openMenu === menu) return;
+                  openMenu.classList.remove("is-open");
+                  openMenu.querySelector(".nav-menu-trigger")?.setAttribute("aria-expanded", "false");
+                });
+                setOpen(willOpen);
+              });
+
+              menu.addEventListener("keydown", (event) => {
+                if (event.key !== "Escape") return;
+                setOpen(false);
+                trigger.focus();
+              });
+            });
+
+            document.addEventListener("click", (event) => {
+              if (event.target instanceof Element && event.target.closest("[data-nav-menu]")) return;
+              document.querySelectorAll("[data-nav-menu].is-open").forEach((menu) => {
+                menu.classList.remove("is-open");
+                menu.querySelector(".nav-menu-trigger")?.setAttribute("aria-expanded", "false");
+              });
+            });
+          </script>
         </>
       )
     }
@@ -285,21 +320,29 @@ const currentYear = new Date().getFullYear();
     position: relative;
   }
 
-  .nav-menu summary {
+  .nav-menu::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0.75rem;
+    content: "";
+  }
+
+  .nav-menu-trigger {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    border: 0;
+    padding: 0;
+    background: transparent;
     color: #edf6f3;
+    font: inherit;
     font-weight: 700;
     cursor: pointer;
-    list-style: none;
   }
 
-  .nav-menu summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .nav-menu summary:focus-visible {
+  .nav-menu-trigger:focus-visible {
     border-radius: 4px;
     outline: 3px solid var(--accent);
     outline-offset: 4px;
@@ -309,7 +352,9 @@ const currentYear = new Date().getFullYear();
     transition: transform 160ms ease;
   }
 
-  .nav-menu[open] .nav-menu-chevron {
+  .nav-menu.is-open .nav-menu-chevron,
+  .nav-menu:hover .nav-menu-chevron,
+  .nav-menu:focus-within .nav-menu-chevron {
     transform: rotate(180deg);
   }
 
@@ -328,7 +373,7 @@ const currentYear = new Date().getFullYear();
     box-shadow: 0 16px 36px rgba(15, 24, 22, 0.18);
   }
 
-  .nav-menu[open] .nav-dropdown,
+  .nav-menu.is-open .nav-dropdown,
   .nav-menu:hover .nav-dropdown,
   .nav-menu:focus-within .nav-dropdown {
     display: grid;
@@ -1006,11 +1051,11 @@ const currentYear = new Date().getFullYear();
     }
 
     .nav-menu,
-    .nav-menu summary {
+    .nav-menu-trigger {
       width: 100%;
     }
 
-    .nav-menu summary {
+    .nav-menu-trigger {
       justify-content: flex-start;
       padding: 0.45rem 0;
     }

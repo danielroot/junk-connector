@@ -4,13 +4,13 @@ test("homepage exposes booking and approved regions", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Book junk removal online" })).toBeVisible();
   const locationsMenu = page.locator(".nav-menu").filter({ hasText: "Locations" });
-  await locationsMenu.locator("summary").click();
+  await locationsMenu.getByRole("button", { name: "Locations" }).click();
   await expect(locationsMenu.getByRole("link", { name: "New York City, NY" })).toHaveAttribute(
     "href",
     "/locations/ny/new-york/",
   );
   const itemsMenu = page.locator(".nav-menu").filter({ hasText: "Items for Removal" });
-  await itemsMenu.locator("summary").click();
+  await itemsMenu.getByRole("button", { name: "Items for Removal" }).click();
   await expect(itemsMenu.getByRole("link", { name: "Mattress Removal" })).toHaveAttribute(
     "href",
     "/junk-removal/mattress-removal/",
