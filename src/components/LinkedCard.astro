@@ -1,0 +1,23 @@
+---
+type Props = {
+  href: string;
+  title: string;
+  description: string;
+  icon: string;
+  linkLabel: string;
+};
+
+const { href, title, description, icon, linkLabel } = Astro.props;
+---
+
+<a class="card card-link" href={href}>
+  <h3>
+    <span class="material-symbols-rounded" aria-hidden="true">{icon}</span>
+    {title}
+  </h3>
+  <p>{description}</p>
+  <span class="card-link-label">
+    {linkLabel}
+    <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+  </span>
+</a>
