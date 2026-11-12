@@ -108,20 +108,22 @@ const currentYear = new Date().getFullYear();
     {
       !hideChrome && (
         <footer class="site-footer">
-          <nav class="footer-nav" aria-label="Footer navigation">
-            <a href={withBasePath("/")}>Home</a>
-            <a href={withBasePath("/#locations")}>Locations</a>
-            <a href={withBasePath("/#items")}>Items</a>
-            <a href={withBasePath("/faq/")}>FAQ</a>
-            <a href={withBasePath("/book/?campaign=footer")}>Book Now</a>
-          </nav>
-          <p class="footer-copyright">© {currentYear} Junk Connector. All rights reserved.</p>
-          <div class="footer-legal">
-            <p>{siteConfig.affiliateDisclosure}</p>
-            <p>
-              Junk Connector is a referral publisher, not a hauling company. Service, pricing, and
-              availability are controlled by the sponsored booking partner.
-            </p>
+          <div class="footer-inner">
+            <nav class="footer-nav" aria-label="Footer navigation">
+              <a href={withBasePath("/")}>Home</a>
+              <a href={withBasePath("/#locations")}>Locations</a>
+              <a href={withBasePath("/#items")}>Items</a>
+              <a href={withBasePath("/faq/")}>FAQ</a>
+              <a href={withBasePath("/book/?campaign=footer")}>Book Now</a>
+            </nav>
+            <p class="footer-copyright">© {currentYear} Junk Connector. All rights reserved.</p>
+            <div class="footer-legal">
+              <p>{siteConfig.affiliateDisclosure}</p>
+              <p>
+                Junk Connector is a referral publisher, not a hauling company. Service, pricing,
+                and availability are controlled by the sponsored booking partner.
+              </p>
+            </div>
           </div>
         </footer>
       )
@@ -300,7 +302,7 @@ const currentYear = new Date().getFullYear();
 
   .hero-copy,
   .section-inner,
-  .site-footer {
+  .footer-inner {
     max-width: var(--max);
     margin: 0 auto;
   }
@@ -772,7 +774,8 @@ const currentYear = new Date().getFullYear();
     border-top: 0;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    color: var(--muted);
+    background: var(--ink);
+    color: #cbd8d4;
     font-size: 0.72rem;
   }
 
@@ -786,9 +789,13 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-nav a {
-    color: var(--primary-dark);
+    color: #f3faf7;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
+  }
+
+  .footer-nav a:hover {
+    color: #63d4c9;
   }
 
   .site-footer p {
@@ -797,6 +804,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-copyright {
     margin-bottom: 1rem;
+    color: white;
   }
 
   .footer-legal {
