@@ -29,15 +29,6 @@ const href = bookingPagePath({ campaign, region, item, back });
   aria-labelledby={`booking-heading-${campaign}`}
   data-analytics-event="booking_click"
 >
-  <div class="booking-copy">
-    <p class="eyebrow">Sponsored booking partner</p>
-    <h2 id={`booking-heading-${campaign}`}>{title}</h2>
-    <p>{description}</p>
-    <p class="booking-disclosure">
-      Booking, pricing, service availability, and pickup details are handled by the partner.
-    </p>
-  </div>
-
   <span class="booking-module-art" aria-hidden="true">
     <img
       src={siteConfig.defaultImage}
@@ -48,6 +39,15 @@ const href = bookingPagePath({ campaign, region, item, back });
       decoding="async"
     />
   </span>
+
+  <div class="booking-copy">
+    <p class="eyebrow">Sponsored booking partner</p>
+    <h2 id={`booking-heading-${campaign}`}>{title}</h2>
+    <p>{description}</p>
+    <p class="booking-disclosure">
+      Booking, pricing, service availability, and pickup details are handled by the partner.
+    </p>
+  </div>
 
   <div class="booking-actions">
     <span class="button button-primary">Book Now</span>
