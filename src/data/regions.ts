@@ -200,6 +200,204 @@ export const regions: Region[] = [
     },
     approved: true,
   },
+  {
+    slug: "new-york",
+    city: "New York City",
+    state: "New York",
+    stateCode: "ny",
+    heroImage: siteConfig.defaultImage,
+    imageAlt: "Junk removal themed characters prepared for a New York City pickup",
+    imagePrompt:
+      "Photo-real junk removal crew moving furniture from a New York City apartment building, no landmarks, no logos, truthful service scene.",
+    title: "Book Junk Removal in New York City, NY",
+    description:
+      "Book furniture removal, apartment cleanouts, and bulky-item pickup online in New York City.",
+    serviceAreaNote:
+      "Explore pickup guidance for apartments, walk-ups, elevator buildings, curb access, and move-out cleanouts.",
+    localSignals: [
+      {
+        icon: "apartment",
+        text: "Apartment pickups may require elevator reservations, building approval, or a certificate of insurance.",
+      },
+      {
+        icon: "stairs",
+        text: "Walk-up buildings and narrow hallways can affect labor, timing, and item-removal planning.",
+      },
+      {
+        icon: "signpost",
+        text: "Curb placement and building rules should be confirmed before moving bulky items outside.",
+      },
+    ],
+    acceptedCategories: [
+      "Furniture",
+      "Mattresses",
+      "Appliances",
+      "Electronics",
+      "Office furniture",
+      "Bagged household junk",
+    ],
+    donationRecyclingNote:
+      "New York City has specific rules for some bulky items. Check local requirements and describe item condition before booking private pickup.",
+    commonScenarios: [
+      "Removing furniture from a walk-up apartment",
+      "Coordinating a move-out cleanout with building access hours",
+      "Clearing bulky items from a storage room or office",
+    ],
+    faqs: [
+      {
+        question: "Can I book apartment junk removal in New York City?",
+        answer:
+          "Yes. Enter the ZIP code, item list, floor, elevator details, and building requirements to check availability.",
+      },
+      {
+        question: "What building details should I provide?",
+        answer:
+          "Include stairs, elevator reservations, loading access, parking limits, service-entry rules, and any insurance requirements.",
+      },
+      {
+        question: "Does Junk Connector perform the pickup?",
+        answer:
+          "No. Junk Connector provides booking information and connects you with a third-party service provider that handles the pickup.",
+      },
+    ],
+    bookingTracking: {
+      campaign: "new-york-city-ny",
+      region: "new-york",
+    },
+    approved: true,
+  },
+  {
+    slug: "los-angeles",
+    city: "Los Angeles",
+    state: "California",
+    stateCode: "ca",
+    heroImage: siteConfig.defaultImage,
+    imageAlt: "Junk removal themed characters prepared for a Los Angeles pickup",
+    imagePrompt:
+      "Photo-real junk removal crew loading furniture from a Los Angeles home driveway, no landmarks, no logos, truthful service scene.",
+    title: "Book Junk Removal in Los Angeles, CA",
+    description:
+      "Book furniture removal, garage cleanouts, and bulky-item pickup online in Los Angeles.",
+    serviceAreaNote:
+      "Explore pickup guidance for homes, apartments, driveways, garages, and move-related cleanouts.",
+    localSignals: [
+      {
+        icon: "local_parking",
+        text: "Limited street parking and long carries from the property can affect pickup planning.",
+      },
+      {
+        icon: "garage_home",
+        text: "Garage and storage cleanouts are easier to quote with a complete item list and clear access notes.",
+      },
+      {
+        icon: "recycling",
+        text: "Usable furniture and working appliances may have donation or reuse options depending on condition.",
+      },
+    ],
+    acceptedCategories: [
+      "Couches",
+      "Mattresses",
+      "Appliances",
+      "Patio furniture",
+      "Office furniture",
+      "General household junk",
+    ],
+    donationRecyclingNote:
+      "Los Angeles offers municipal options for some bulky items. Compare local programs with private pickup before booking.",
+    commonScenarios: [
+      "Clearing furniture before or after a move",
+      "Removing bulky items from a garage or storage area",
+      "Preparing a rental property for new occupants",
+    ],
+    faqs: [
+      {
+        question: "Can I book same-day junk removal in Los Angeles?",
+        answer:
+          "Availability varies by ZIP code, item list, access details, and schedule. Enter the job details to view current options.",
+      },
+      {
+        question: "Should I list every item before requesting a quote?",
+        answer:
+          "Yes. A complete item list helps produce a more accurate quote and reduces the chance of changes at pickup.",
+      },
+      {
+        question: "Who provides the hauling service?",
+        answer:
+          "A third-party service provider handles availability, pricing, scheduling, and the pickup itself.",
+      },
+    ],
+    bookingTracking: {
+      campaign: "los-angeles-ca",
+      region: "los-angeles",
+    },
+    approved: true,
+  },
+  {
+    slug: "houston",
+    city: "Houston",
+    state: "Texas",
+    stateCode: "tx",
+    heroImage: siteConfig.defaultImage,
+    imageAlt: "Junk removal themed characters prepared for a Houston pickup",
+    imagePrompt:
+      "Photo-real junk removal crew loading household items from a Houston home garage, no skyline, no logos, truthful service scene.",
+    title: "Book Junk Removal in Houston, TX",
+    description:
+      "Book furniture removal, garage cleanouts, and household junk pickup online in Houston.",
+    serviceAreaNote:
+      "Explore pickup guidance for homes, apartments, garages, driveways, and move-related cleanouts.",
+    localSignals: [
+      {
+        icon: "garage_home",
+        text: "Garage and driveway pickups should include an accurate item count and notes about gate access.",
+      },
+      {
+        icon: "apartment",
+        text: "Apartment pickups may require parking instructions, elevator access, and property-management approval.",
+      },
+      {
+        icon: "rainy",
+        text: "Outdoor items should be kept safely accessible while protected from rain when possible.",
+      },
+    ],
+    acceptedCategories: [
+      "Furniture",
+      "Mattresses",
+      "Appliances",
+      "Patio furniture",
+      "Exercise equipment",
+      "Bagged household junk",
+    ],
+    donationRecyclingNote:
+      "Houston collection options vary by address and item type. Check local rules and describe reusable or regulated items accurately before booking.",
+    commonScenarios: [
+      "Clearing a garage before a move or renovation",
+      "Removing furniture from an apartment or rental home",
+      "Hauling bulky household items after a cleanout",
+    ],
+    faqs: [
+      {
+        question: "Can I get a junk removal quote online in Houston?",
+        answer:
+          "Yes. Enter the ZIP code, item list, quantities, access details, and preferred timing to check pricing and availability.",
+      },
+      {
+        question: "What access details should I include?",
+        answer:
+          "Include gate codes, stairs, elevators, parking limits, driveway access, and whether items are indoors or curbside.",
+      },
+      {
+        question: "Does Junk Connector provide hauling services?",
+        answer:
+          "No. Junk Connector provides booking guides and connects you with a third-party service provider that performs the pickup.",
+      },
+    ],
+    bookingTracking: {
+      campaign: "houston-tx",
+      region: "houston",
+    },
+    approved: true,
+  },
 ];
 
 export const approvedRegions = regions.filter((region) => region.approved);

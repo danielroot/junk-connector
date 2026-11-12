@@ -54,6 +54,20 @@ test("location page has local signals and booking module", async ({ page }) => {
   await expect(page.locator('iframe[title="Booking form"]')).toHaveClass(/booking-iframe/);
 });
 
+test("expanded city guides render their local pages", async ({ page }) => {
+  const cities = [
+    ["/locations/ny/new-york/", "Book Junk Removal in New York City, NY"],
+    ["/locations/ca/los-angeles/", "Book Junk Removal in Los Angeles, CA"],
+    ["/locations/tx/houston/", "Book Junk Removal in Houston, TX"],
+  ] as const;
+
+  for (const [path, heading] of cities) {
+    await page.goto(path);
+    await expect(page.getByRole("heading", { name: heading })).toBeVisible();
+    await expect(page.locator(".booking-module")).toBeVisible();
+  }
+});
+
 test("item page has prep notes and FAQ", async ({ page }) => {
   await page.goto("/junk-removal/mattress-removal/");
   await expect(page.getByRole("heading", { name: "Book Mattress Removal Online" })).toBeVisible();
