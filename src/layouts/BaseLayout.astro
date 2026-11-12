@@ -242,17 +242,25 @@ const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
     color: var(--primary-dark);
   }
 
-  .site-header nav .nav-book-button {
+  .site-header nav a.nav-book-button {
     min-height: 2.65rem;
+    border: 1px solid var(--primary);
     border-radius: 8px;
     padding: 0.65rem 1rem;
     background: var(--primary);
     color: white;
+    box-shadow: 0 2px 8px rgba(15, 118, 110, 0.18);
   }
 
-  .site-header nav .nav-book-button:hover {
+  .site-header nav a.nav-book-button:hover {
+    border-color: var(--primary-dark);
     background: var(--primary-dark);
     color: white;
+  }
+
+  .site-header nav a.nav-book-button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .hero,
