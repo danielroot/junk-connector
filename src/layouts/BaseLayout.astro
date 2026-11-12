@@ -1,6 +1,16 @@
 ---
 import { siteConfig } from "@data/site";
-import { absoluteUrl, jsonLd, organizationSchema, websiteSchema, withBasePath } from "@lib/seo";
+import { approvedRegions } from "@data/regions";
+import { junkItems } from "@data/items";
+import {
+  absoluteUrl,
+  itemPath,
+  jsonLd,
+  organizationSchema,
+  regionPath,
+  websiteSchema,
+  withBasePath,
+} from "@lib/seo";
 
 type Props = {
   title?: string;
@@ -79,14 +89,32 @@ const currentYear = new Date().getFullYear();
               <span>Junk Connector</span>
             </a>
             <nav aria-label="Primary navigation">
-              <a href={withBasePath("/#locations")}>
-                <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
-                <span>Locations</span>
-              </a>
-              <a href={withBasePath("/#items")}>
-                <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
-                <span>Items for Removal</span>
-              </a>
+              <details class="nav-menu">
+                <summary>
+                  <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+                  <span>Locations</span>
+                  <span class="nav-menu-chevron material-symbols-rounded" aria-hidden="true">expand_more</span>
+                </summary>
+                <div class="nav-dropdown">
+                  <a class="nav-dropdown-all" href={withBasePath("/#locations")}>View all locations</a>
+                  {approvedRegions.map((region) => (
+                    <a href={withBasePath(regionPath(region))}>{region.city}, {region.stateCode.toUpperCase()}</a>
+                  ))}
+                </div>
+              </details>
+              <details class="nav-menu">
+                <summary>
+                  <span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>
+                  <span>Items for Removal</span>
+                  <span class="nav-menu-chevron material-symbols-rounded" aria-hidden="true">expand_more</span>
+                </summary>
+                <div class="nav-dropdown">
+                  <a class="nav-dropdown-all" href={withBasePath("/#items")}>View all items</a>
+                  {junkItems.map((item) => (
+                    <a href={withBasePath(itemPath(item))}>{item.name}</a>
+                  ))}
+                </div>
+              </details>
               <a href={withBasePath("/faq/")}>
                 <span class="material-symbols-rounded" aria-hidden="true">help</span>
                 <span>FAQ</span>
@@ -251,6 +279,79 @@ const currentYear = new Date().getFullYear();
     color: #edf6f3;
     font-weight: 700;
     text-decoration: none;
+  }
+
+  .nav-menu {
+    position: relative;
+  }
+
+  .nav-menu summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #edf6f3;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .nav-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-menu summary:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .nav-menu-chevron {
+    transition: transform 160ms ease;
+  }
+
+  .nav-menu[open] .nav-menu-chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    z-index: 30;
+    display: none;
+    min-width: 240px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.45rem;
+    background: white;
+    box-shadow: 0 16px 36px rgba(15, 24, 22, 0.18);
+  }
+
+  .nav-menu[open] .nav-dropdown,
+  .nav-menu:hover .nav-dropdown,
+  .nav-menu:focus-within .nav-dropdown {
+    display: grid;
+  }
+
+  .site-header nav .nav-dropdown a {
+    border-radius: 6px;
+    padding: 0.65rem 0.75rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .site-header nav .nav-dropdown a:hover,
+  .site-header nav .nav-dropdown a:focus-visible {
+    background: var(--surface);
+    color: var(--primary-dark);
+  }
+
+  .site-header nav .nav-dropdown-all {
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--primary-dark);
   }
 
   .site-header nav .material-symbols-rounded {
@@ -902,6 +1003,27 @@ const currentYear = new Date().getFullYear();
     .booking-page-bar {
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .nav-menu,
+    .nav-menu summary {
+      width: 100%;
+    }
+
+    .nav-menu summary {
+      justify-content: flex-start;
+      padding: 0.45rem 0;
+    }
+
+    .nav-menu-chevron {
+      margin-left: auto;
+    }
+
+    .nav-dropdown {
+      position: static;
+      min-width: 0;
+      margin: 0.25rem 0 0.5rem;
+      box-shadow: none;
     }
 
     .booking-back-link {
