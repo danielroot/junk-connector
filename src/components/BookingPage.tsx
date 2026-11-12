@@ -92,15 +92,17 @@ export default function BookingPage() {
       }
 
       if (event.data.type === "completed_order") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "orderCreation",
-          orderId: event.data.order?.id,
-          orderAmount: event.data.total,
-          campaign: context.campaign,
-          region: context.region,
-          item: context.item,
-        });
+        window.dispatchEvent(
+          new CustomEvent("booking-order-completed", {
+            detail: {
+              order_id: event.data.order?.id,
+              order_amount: event.data.total,
+              campaign: context.campaign,
+              region: context.region,
+              item: context.item,
+            },
+          }),
+        );
       }
     }
 
@@ -215,5 +217,6 @@ function trackIntent(action: string, context: BookingContext) {
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (command: "event", eventName: string, params?: Record<string, unknown>) => void;
   }
 }

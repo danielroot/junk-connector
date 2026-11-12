@@ -1,14 +1,20 @@
 window.dataLayer = window.dataLayer || [];
 
 function trackEvent(name, detail) {
-  window.dataLayer.push({
-    event: name,
-    ...(detail || {}),
-  });
+  if (typeof window.gtag === "function") {
+    window.gtag("event", name, detail || {});
+    return;
+  }
+
+  window.dataLayer.push({ event: name, ...(detail || {}) });
 }
 
 window.addEventListener("booking-intent", function (event) {
   trackEvent("booking_intent", event.detail || {});
+});
+
+window.addEventListener("booking-order-completed", function (event) {
+  trackEvent("generate_lead", event.detail || {});
 });
 
 document.addEventListener("click", function (event) {
