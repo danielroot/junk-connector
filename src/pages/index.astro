@@ -1,7 +1,6 @@
 ---
 import BookingModule from "@components/BookingModule.astro";
 import LinkedCard from "@components/LinkedCard.astro";
-import LocationSelector from "@components/LocationSelector.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { approvedRegions } from "@data/regions";
 import { junkItems } from "@data/items";
@@ -72,7 +71,6 @@ const schemas = [
           donation notes, and a reviewed image prompt.
         </p>
       </div>
-      <LocationSelector regions={approvedRegions} />
       <div class="card-grid" style="margin-top: 1.5rem;">
         {
           approvedRegions.map((region) => (
