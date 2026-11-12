@@ -1,5 +1,5 @@
 ---
-import FAQAccordion from "@components/FAQAccordion";
+import FAQList from "@components/FAQList.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { junkItems } from "@data/items";
 import { siteConfig } from "@data/site";
@@ -119,9 +119,11 @@ const schemas = [
       <img
         src={siteConfig.defaultImage}
         alt="Junk removal themed characters ready for bulky item pickup"
-        width="1392"
-        height="768"
+        width="1200"
+        height="655"
         loading="eager"
+        fetchpriority="high"
+        decoding="async"
       />
     </figure>
   </section>
@@ -132,7 +134,7 @@ const schemas = [
         <p class="eyebrow">General</p>
         <h2>Booking and referral questions</h2>
       </div>
-      <FAQAccordion faqs={generalFaqs} client:load />
+      <FAQList faqs={generalFaqs} />
     </div>
   </section>
 
@@ -146,7 +148,7 @@ const schemas = [
           scheduling availability.
         </p>
       </div>
-      <FAQAccordion faqs={pricingFaqs} client:load />
+      <FAQList faqs={pricingFaqs} />
     </div>
   </section>
 
@@ -173,7 +175,7 @@ const schemas = [
                   <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
                 </a>
               </div>
-              <FAQAccordion faqs={item.faqs} client:load />
+              <FAQList faqs={item.faqs} />
             </section>
           ))
         }

@@ -1,0 +1,37 @@
+---
+import type { Region } from "@data/types";
+import { regionPath, withBasePath } from "@lib/seo";
+
+type Props = {
+  regions: Region[];
+};
+
+const { regions } = Astro.props;
+---
+
+<form class="location-selector" data-location-selector>
+  <label for="location-select">Choose a service area</label>
+  <div class="location-selector-row">
+    <select id="location-select" name="location" required>
+      <option value="">Select a city</option>
+      {
+        regions.map((region) => (
+          <option value={withBasePath(regionPath(region))}>
+            {region.city}, {region.state}
+          </option>
+        ))
+      }
+    </select>
+    <button type="submit" class="button button-secondary">View area</button>
+  </div>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-location-selector]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const select = form.querySelector<HTMLSelectElement>("select");
+      if (select?.value) window.location.assign(select.value);
+    });
+  });
+</script>

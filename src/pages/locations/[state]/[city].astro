@@ -1,6 +1,6 @@
 ---
-import BookingModule from "@components/BookingModule";
-import FAQAccordion from "@components/FAQAccordion";
+import BookingModule from "@components/BookingModule.astro";
+import FAQList from "@components/FAQList.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { approvedRegions } from "@data/regions";
 import { bookingPagePath } from "@lib/booking";
@@ -65,7 +65,15 @@ const schemas = [
       </div>
     </div>
     <figure class="hero-media">
-      <img src={region.heroImage} alt={region.imageAlt} width="1392" height="768" loading="eager" />
+      <img
+        src={region.heroImage}
+        alt={region.imageAlt}
+        width="1200"
+        height="655"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </figure>
   </section>
 
@@ -122,7 +130,6 @@ const schemas = [
   <section class="section" id="booking">
     <div class="section-inner">
       <BookingModule
-        client:load
         title={`Start a ${region.city} junk removal booking`}
         campaign={region.bookingTracking.campaign}
         region={region.bookingTracking.region}
@@ -137,7 +144,7 @@ const schemas = [
         <p class="eyebrow">Questions</p>
         <h2>{region.city} junk removal FAQ</h2>
       </div>
-      <FAQAccordion faqs={region.faqs} client:load />
+      <FAQList faqs={region.faqs} />
     </div>
   </section>
 </BaseLayout>

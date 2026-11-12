@@ -36,6 +36,8 @@ for (const file of walk(dist)) {
   if (!title) errors.push(`${file}: missing <title>`);
   if (!description) errors.push(`${file}: missing meta description`);
   if (!html.includes('rel="canonical"')) errors.push(`${file}: missing canonical link`);
+  if (!html.includes('property="og:title"')) errors.push(`${file}: missing Open Graph title`);
+  if (!html.includes('name="twitter:card"')) errors.push(`${file}: missing Twitter card`);
   if (!html.includes('type="application/ld+json"')) errors.push(`${file}: missing JSON-LD`);
   if (partnerAnchorMissingSponsoredRel(html)) {
     errors.push(`${file}: partner link missing rel="sponsored"`);
@@ -68,6 +70,10 @@ for (const file of walk(dist)) {
 const sitemap = readFileSync(join(dist, "sitemap.xml"), "utf8");
 if (!sitemap.includes("<urlset")) errors.push("dist/sitemap.xml: missing urlset");
 if (!sitemap.includes("<loc>")) errors.push("dist/sitemap.xml: missing loc entries");
+
+const robots = readFileSync(join(dist, "robots.txt"), "utf8");
+if (!robots.includes("User-agent: *")) errors.push("dist/robots.txt: missing user-agent rule");
+if (!robots.includes("Sitemap: https://")) errors.push("dist/robots.txt: missing absolute sitemap URL");
 
 if (errors.length) {
   console.error(errors.join("\n"));

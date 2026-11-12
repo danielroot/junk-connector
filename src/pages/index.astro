@@ -1,6 +1,6 @@
 ---
-import BookingModule from "@components/BookingModule";
-import LocationSelector from "@components/LocationSelector";
+import BookingModule from "@components/BookingModule.astro";
+import LocationSelector from "@components/LocationSelector.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { approvedRegions } from "@data/regions";
 import { junkItems } from "@data/items";
@@ -52,9 +52,11 @@ const schemas = [
       <img
         src={siteConfig.defaultImage}
         alt="Junk removal themed characters holding furniture and bagged items"
-        width="1392"
-        height="768"
+        width="1200"
+        height="655"
         loading="eager"
+        fetchpriority="high"
+        decoding="async"
       />
     </figure>
   </section>
@@ -69,7 +71,7 @@ const schemas = [
           donation notes, and a reviewed image prompt.
         </p>
       </div>
-      <LocationSelector regions={approvedRegions} client:load />
+      <LocationSelector regions={approvedRegions} />
       <div class="card-grid" style="margin-top: 1.5rem;">
         {
           approvedRegions.map((region) => (
@@ -122,11 +124,7 @@ const schemas = [
 
   <section class="section section-muted" id="booking">
     <div class="section-inner">
-      <BookingModule
-        client:load
-        campaign="homepage"
-        back="/#booking"
-      />
+      <BookingModule campaign="homepage" back="/#booking" />
     </div>
   </section>
 </BaseLayout>

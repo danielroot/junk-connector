@@ -1,6 +1,6 @@
 ---
-import BookingModule from "@components/BookingModule";
-import FAQAccordion from "@components/FAQAccordion";
+import BookingModule from "@components/BookingModule.astro";
+import FAQList from "@components/FAQList.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { junkItems } from "@data/items";
 import { bookingPagePath } from "@lib/booking";
@@ -64,7 +64,15 @@ const schemas = [
       </div>
     </div>
     <figure class="hero-media">
-      <img src={item.heroImage} alt={item.imageAlt} width="1392" height="768" loading="eager" />
+      <img
+        src={item.heroImage}
+        alt={item.imageAlt}
+        width="1200"
+        height="655"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </figure>
   </section>
 
@@ -90,7 +98,6 @@ const schemas = [
   <section class="section section-muted" id="booking">
     <div class="section-inner">
       <BookingModule
-        client:load
         title={`Start a ${item.name.toLowerCase()} booking`}
         campaign={item.slug}
         item={item.bookingIntent}
@@ -105,7 +112,7 @@ const schemas = [
         <p class="eyebrow">Questions</p>
         <h2>{item.name} FAQ</h2>
       </div>
-      <FAQAccordion faqs={item.faqs} client:load />
+      <FAQList faqs={item.faqs} />
     </div>
   </section>
 </BaseLayout>

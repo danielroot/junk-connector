@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Junk Connector",
   baseUrl: import.meta.env.PUBLIC_SITE_URL || "https://junkconnector.example",
+  gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",
   defaultTitle: "Junk Connector | Book Junk Removal Online",
   defaultDescription:
     "Compare local junk removal options and start an online booking through a sponsored booking flow.",
@@ -12,5 +13,5 @@ export const siteConfig = {
   bookingPartnerScriptUrl:
     "https://goloadup.com/wp-content/themes/goloadup/js/retail_brand_builder_setup.min.js",
   bookingPartnerIframeBaseUrl: "https://order.goloadup.com/retail/orders/new",
-  defaultImage: `${import.meta.env.BASE_URL}assets/placeholders/junk-removal-characters.png`,
+  defaultImage: `${import.meta.env.BASE_URL}assets/placeholders/junk-removal-characters.webp`,
 };

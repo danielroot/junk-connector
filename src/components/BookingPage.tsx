@@ -210,14 +210,6 @@ function trackIntent(action: string, context: BookingContext) {
     }),
   );
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: "booking_intent",
-    action,
-    campaign: context.campaign,
-    region: context.region,
-    item: context.item,
-  });
 }
 
 declare global {

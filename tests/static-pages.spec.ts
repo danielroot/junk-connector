@@ -58,14 +58,16 @@ test("item page has prep notes and FAQ", async ({ page }) => {
   await page.goto("/junk-removal/mattress-removal/");
   await expect(page.getByRole("heading", { name: "Book Mattress Removal Online" })).toBeVisible();
   await expect(page.getByText("Count each mattress and box spring separately.")).toBeVisible();
-  await expect(page.getByRole("button", { name: /Can I book mattress removal/ })).toBeVisible();
+  await expect(page.locator("summary", { hasText: /Can I book mattress removal/ })).toBeVisible();
 });
 
 test("FAQ page groups booking, pricing, and item questions", async ({ page }) => {
   await page.goto("/faq/");
   await expect(page.getByRole("heading", { name: "Junk removal FAQ" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "What is Junk Connector?" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "How does online junk removal pricing work?" })).toBeVisible();
+  await expect(page.locator("summary", { hasText: "What is Junk Connector?" })).toBeVisible();
+  await expect(
+    page.locator("summary", { hasText: "How does online junk removal pricing work?" }),
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Chicago, Illinois" })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Mattress Removal" })).toBeVisible();
   await expect(page.getByRole("link", { name: "View guide" })).toHaveCount(0);

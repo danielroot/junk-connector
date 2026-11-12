@@ -1,0 +1,40 @@
+---
+import { bookingPagePath } from "@lib/booking";
+
+type Props = {
+  title?: string;
+  description?: string;
+  campaign: string;
+  region?: string;
+  item?: string;
+  back?: string;
+};
+
+const {
+  title = "Start your junk removal booking",
+  description = "Enter your details with the sponsored booking partner to confirm availability, pricing, and pickup options.",
+  campaign,
+  region,
+  item,
+  back,
+} = Astro.props;
+
+const href = bookingPagePath({ campaign, region, item, back });
+---
+
+<section class="booking-module" aria-labelledby={`booking-heading-${campaign}`}>
+  <div class="booking-copy">
+    <p class="eyebrow">Sponsored booking partner</p>
+    <h2 id={`booking-heading-${campaign}`}>{title}</h2>
+    <p>{description}</p>
+    <p class="booking-disclosure">
+      Booking, pricing, service availability, and pickup details are handled by the partner.
+    </p>
+  </div>
+
+  <div class="booking-actions">
+    <a class="button button-primary" href={href} data-analytics-event="booking_click">
+      Book
+    </a>
+  </div>
+</section>

@@ -34,3 +34,11 @@ PATH="/Users/danroot/.cache/codex-runtimes/codex-primary-runtime/dependencies/no
 Netlify builds with Node 22, runs `npm run build`, and publishes `dist`. Set `PUBLIC_SITE_URL` in Netlify to the production domain so canonical URLs, Open Graph URLs, and the sitemap use the live host.
 
 GitHub Pages uses `.github/workflows/deploy-pages.yml`, builds `dist`, and publishes it with `PUBLIC_SITE_BASE=/junk-connector/` so project-page asset paths resolve correctly.
+
+Cloudflare Workers Builds uses `npm run build` followed by:
+
+```bash
+npx wrangler deploy --assets ./dist/ --compatibility-date 2026-11-10
+```
+
+Set `PUBLIC_SITE_URL=https://junkconnector.com` and `PUBLIC_SITE_BASE=/` as build variables. Enable Cloudflare Web Analytics for privacy-first traffic and Core Web Vitals reporting. To add GA4 conversion reporting, also set the optional `PUBLIC_GA_MEASUREMENT_ID` build variable; booking and outbound-link events are emitted automatically.
