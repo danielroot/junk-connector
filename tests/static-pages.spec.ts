@@ -78,6 +78,14 @@ test("expanded city guides render their local pages", async ({ page }) => {
     await expect(page.getByRole("heading", { name: heading })).toBeVisible();
     await expect(page.locator(".booking-module")).toBeVisible();
   }
+
+  await page.goto("/locations/ca/los-angeles/");
+  const locationsMenu = page.locator(".nav-menu").filter({ hasText: "Locations" });
+  await locationsMenu.getByRole("button", { name: "Locations" }).click();
+  await expect(locationsMenu.getByRole("link", { name: "Los Angeles, CA" })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
 });
 
 test("item page has prep notes and FAQ", async ({ page }) => {
@@ -85,6 +93,12 @@ test("item page has prep notes and FAQ", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Book Mattress Removal Online" })).toBeVisible();
   await expect(page.getByText("Count each mattress and box spring separately.")).toBeVisible();
   await expect(page.locator("summary", { hasText: /Can I book mattress removal/ })).toBeVisible();
+  const itemsMenu = page.locator(".nav-menu").filter({ hasText: "Items for Removal" });
+  await itemsMenu.getByRole("button", { name: "Items for Removal" }).click();
+  await expect(itemsMenu.getByRole("link", { name: "Mattress Removal" })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
 });
 
 test("FAQ page groups booking, pricing, and item questions", async ({ page }) => {

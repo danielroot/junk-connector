@@ -35,6 +35,7 @@ const canonicalUrl = absoluteUrl(canonicalPath);
 const imageUrl = absoluteUrl(image);
 const allSchemas = [organizationSchema(), websiteSchema(), ...schemas];
 const currentYear = new Date().getFullYear();
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -97,9 +98,15 @@ const currentYear = new Date().getFullYear();
                 </button>
                 <div class="nav-dropdown">
                   <a class="nav-dropdown-all" href={withBasePath("/#locations")}>View all locations</a>
-                  {approvedRegions.map((region) => (
-                    <a href={withBasePath(regionPath(region))}>{region.city}, {region.stateCode.toUpperCase()}</a>
-                  ))}
+                  {approvedRegions.map((region) => {
+                    const href = withBasePath(regionPath(region));
+                    const isActive = currentPath === href;
+                    return (
+                      <a class:list={{ "is-active": isActive }} href={href} aria-current={isActive ? "page" : undefined}>
+                        {region.city}, {region.stateCode.toUpperCase()}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
               <div class="nav-menu" data-nav-menu>
@@ -110,9 +117,15 @@ const currentYear = new Date().getFullYear();
                 </button>
                 <div class="nav-dropdown">
                   <a class="nav-dropdown-all" href={withBasePath("/#items")}>View all items</a>
-                  {junkItems.map((item) => (
-                    <a href={withBasePath(itemPath(item))}>{item.name}</a>
-                  ))}
+                  {junkItems.map((item) => {
+                    const href = withBasePath(itemPath(item));
+                    const isActive = currentPath === href;
+                    return (
+                      <a class:list={{ "is-active": isActive }} href={href} aria-current={isActive ? "page" : undefined}>
+                        {item.name}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
               <a href={withBasePath("/faq/")}>
@@ -391,6 +404,13 @@ const currentYear = new Date().getFullYear();
   .site-header nav .nav-dropdown a:focus-visible {
     background: var(--surface);
     color: var(--primary-dark);
+  }
+
+  .site-header nav .nav-dropdown a.is-active {
+    background: #dff4f0;
+    color: var(--primary-dark);
+    box-shadow: inset 3px 0 0 var(--primary);
+    font-weight: 800;
   }
 
   .site-header nav .nav-dropdown-all {
