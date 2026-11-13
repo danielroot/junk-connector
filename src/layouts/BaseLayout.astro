@@ -132,7 +132,7 @@ const currentPath = Astro.url.pathname;
                 <span class="material-symbols-rounded" aria-hidden="true">help</span>
                 <span>FAQ</span>
               </a>
-              <a class="nav-book-button" href={withBasePath("/book/?campaign=site-nav")}>
+              <a class="nav-book-button" href={withBasePath("/book/?utm_campaign=site-nav")}>
                 <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
                 <span>Book Now</span>
               </a>
@@ -190,7 +190,7 @@ const currentPath = Astro.url.pathname;
               <a href={withBasePath("/#locations")}>Locations</a>
               <a href={withBasePath("/#items")}>Items for Removal</a>
               <a href={withBasePath("/faq/")}>FAQ</a>
-              <a href={withBasePath("/book/?campaign=footer")}>Book Now</a>
+              <a href={withBasePath("/book/?utm_campaign=footer")}>Book Now</a>
             </nav>
             <p class="footer-copyright">© {currentYear} Junk Connector. All rights reserved.</p>
             <div class="footer-legal">

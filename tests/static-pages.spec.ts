@@ -16,21 +16,17 @@ test("homepage exposes booking and approved regions", async ({ page }) => {
     "/junk-removal/mattress-removal/",
   );
   await page.getByRole("link", { name: "Get a Free Quote", exact: true }).click();
-  await expect(page).toHaveURL(/\/book\/\?campaign=homepage&back=%2F$/);
+  await expect(page).toHaveURL(/\/book\/\?utm_campaign=homepage&back=%2F$/);
   await expect(page.getByRole("region", { name: "Booking page" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Back to guide" })).toHaveAttribute("href", "/");
   await expect(page.locator("#quote-form")).toHaveAttribute(
     "data-attribution-source",
-    /replace-with-booking-partner-attribution-source/,
+    "",
   );
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator('iframe[title="Booking form"]')).toHaveAttribute(
     "src",
     /order\.goloadup\.com\/retail\/orders\/new/,
-  );
-  await expect(page.locator('iframe[title="Booking form"]')).toHaveAttribute(
-    "src",
-    /host_source=replace-with-booking-partner-attribution-source/,
   );
   await expect(page.locator('iframe[title="Booking form"]')).toHaveClass(/booking-iframe/);
   await page.goto("/");
@@ -43,7 +39,7 @@ test("location page has local signals and booking module", async ({ page }) => {
   await expect(page.getByText("Apartment and condo cleanouts")).toBeVisible();
   await page.locator(".booking-module").click();
   await expect(page).toHaveURL(
-    /\/book\/\?campaign=chicago-il&region=chicago&back=%2Flocations%2Fil%2Fchicago%2F%23booking$/,
+    /\/book\/\?utm_campaign=chicago-il&region=chicago&back=%2Flocations%2Fil%2Fchicago%2F%23booking$/,
   );
   await expect(page.getByRole("region", { name: "Booking page" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Back to guide" })).toHaveAttribute(

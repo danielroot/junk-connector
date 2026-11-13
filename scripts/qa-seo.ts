@@ -46,8 +46,8 @@ for (const file of walk(dist)) {
     if (!html.includes('id="quote-form"')) {
       errors.push(`${file}: missing booking quote form container`);
     }
-    if (!html.includes("order.goloadup.com/retail/orders/new")) {
-      errors.push(`${file}: missing booking iframe base`);
+    if (!html.includes("retail_brand_builder_setup.min.js")) {
+      errors.push(`${file}: missing LoadUp Brand Builder script`);
     }
     if (!html.includes("data-attribution-source")) {
       errors.push(`${file}: missing booking attribution source`);

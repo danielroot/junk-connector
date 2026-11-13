@@ -15,7 +15,7 @@ function withBasePath(path: string) {
 export function bookingPagePath({ campaign, region, item, back }: BookingPageParams = {}) {
   const params = new URLSearchParams();
 
-  if (campaign) params.set("campaign", campaign);
+  if (campaign) params.set("utm_campaign", campaign);
   if (region) params.set("region", region);
   if (item) params.set("item", item);
   if (back) params.set("back", back);

@@ -1,5 +1,4 @@
 ---
-import BookingPage from "@components/BookingPage";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { siteConfig } from "@data/site";
 import { breadcrumbSchema, serviceSchema } from "@lib/seo";
@@ -24,5 +23,61 @@ const schemas = [
   hideChrome
   noindex
 >
-  <BookingPage client:load />
+  <section class="booking-page" role="region" aria-label="Booking page">
+    <header class="booking-page-bar">
+      <a class="booking-back-link" href="/" data-booking-back-link>
+        <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+        Back to guide
+      </a>
+    </header>
+
+    <div class="booking-embed-shell" aria-label="Booking form">
+      <div
+        class="quote-form-shell"
+        id="quote-form"
+        data-attribution-source={siteConfig.bookingPartnerAttributionSource}
+        style="overflow: auto; -webkit-overflow-scrolling: touch;"
+      ></div>
+      <noscript>
+        <p class="booking-error">JavaScript is required to load the booking form.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <script
+    is:inline
+    src={siteConfig.bookingPartnerScriptUrl}
+  ></script>
+  <script is:inline>
+    (() => {
+      const sanitizeBackPath = (value) => {
+        if (!value || !value.startsWith("/") || value.startsWith("//")) return "";
+        return value;
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const backLink = document.querySelector("[data-booking-back-link]");
+      let backPath = sanitizeBackPath(params.get("back"));
+
+      if (!backPath && document.referrer) {
+        try {
+          const referrer = new URL(document.referrer);
+          if (referrer.origin === window.location.origin) {
+            backPath = `${referrer.pathname}${referrer.search}${referrer.hash}`;
+          }
+        } catch {
+          backPath = "";
+        }
+      }
+
+      if (backLink) backLink.setAttribute("href", backPath || "/");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const iframe = document.querySelector('#quote-form iframe[data-resizable="true"]');
+        if (!iframe) return;
+        iframe.title = "Booking form";
+        iframe.classList.add("booking-iframe", "is-loaded");
+      });
+    })();
+  </script>
 </BaseLayout>

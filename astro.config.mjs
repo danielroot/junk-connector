@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import react from "@astrojs/react";
 import { fileURLToPath } from "node:url";
 
 const site = process.env.PUBLIC_SITE_URL || "https://junkconnector.example";
@@ -10,7 +9,6 @@ export default defineConfig({
   site,
   base,
   output: "static",
-  integrations: [react()],
   vite: {
     resolve: {
       alias: {

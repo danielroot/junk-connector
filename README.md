@@ -1,11 +1,12 @@
 # Junk Connector Static Site
 
-Static Astro + React generator for regional junk-removal booking pages with sponsored booking attribution.
+Static Astro site for regional junk-removal booking pages with sponsored booking attribution.
 
-Requires Node `>=22.12.0`. In this Codex workspace, the bundled Node runtime works:
+Requires Node `>=22.12.0`:
 
 ```bash
-PATH="/Users/danroot/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:$PATH" npm run build
+nvm use 24
+npm run build
 ```
 
 ## Commands
@@ -19,7 +20,7 @@ PATH="/Users/danroot/.cache/codex-runtimes/codex-primary-runtime/dependencies/no
 1. Add or edit approved regions in `src/data/regions.ts`.
 2. Add item-specific pages in `src/data/items.ts`.
 3. Keep `approved: false` until a region has real local signals, reviewed image prompts, and safe service claims.
-4. Replace the booking partner placeholders in `src/data/site.ts` after partner terms, attribution, and the exact embed or affiliate URL are confirmed.
+4. Set `PUBLIC_LOADUP_ATTRIBUTION_SOURCE` to the host-source value supplied by LoadUp before publishing.
 5. Generate region imagery from each `imagePrompt`, save optimized files under `public/assets/regions/`, and update the matching `heroImage`.
 
 ## SEO Guardrails
@@ -41,4 +42,4 @@ Cloudflare Workers Builds uses `npm run build` followed by:
 npx wrangler deploy --assets ./dist/ --compatibility-date 2026-11-10
 ```
 
-Set `PUBLIC_SITE_URL=https://junkconnector.com` and `PUBLIC_SITE_BASE=/` as build variables. Enable Cloudflare Web Analytics for privacy-first traffic and Core Web Vitals reporting. To add GA4 conversion reporting, also set the optional `PUBLIC_GA_MEASUREMENT_ID` build variable; booking and outbound-link events are emitted automatically.
+Set `PUBLIC_SITE_URL=https://junkconnector.com`, `PUBLIC_SITE_BASE=/`, and the LoadUp-provided `PUBLIC_LOADUP_ATTRIBUTION_SOURCE` as build variables. Enable Cloudflare Web Analytics for privacy-first traffic and Core Web Vitals reporting. To add GA4 conversion reporting, also set the optional `PUBLIC_GA_MEASUREMENT_ID` build variable; booking and outbound-link events are emitted automatically.
