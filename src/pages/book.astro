@@ -32,12 +32,20 @@ const schemas = [
     </header>
 
     <div class="booking-embed-shell" aria-label="Booking form">
+      <div class="booking-loading" role="status" aria-live="polite" data-booking-loading>
+        <span class="booking-loading-spinner" aria-hidden="true"></span>
+        <span class="booking-loading-title">Loading booking form</span>
+        <span class="booking-loading-copy">
+          Checking availability with our booking partner.
+        </span>
+      </div>
       <div
         class="quote-form-shell"
         id="quote-form"
         data-attribution-source={siteConfig.bookingPartnerAttributionSource}
         style="overflow: auto; -webkit-overflow-scrolling: touch;"
       ></div>
+      <div class="booking-partner-prompt-mask" data-partner-prompt-mask aria-hidden="true"></div>
       <noscript>
         <p class="booking-error">JavaScript is required to load the booking form.</p>
       </noscript>
@@ -57,6 +65,9 @@ const schemas = [
 
       const params = new URLSearchParams(window.location.search);
       const backLink = document.querySelector("[data-booking-back-link]");
+      const partnerPromptMask = document.querySelector("[data-partner-prompt-mask]");
+      let initialIframeHeight = null;
+      let maskResizeReadyAt = 0;
       let backPath = sanitizeBackPath(params.get("back"));
 
       if (!backPath && document.referrer) {
@@ -76,7 +87,40 @@ const schemas = [
         const iframe = document.querySelector('#quote-form iframe[data-resizable="true"]');
         if (!iframe) return;
         iframe.title = "Booking form";
-        iframe.classList.add("booking-iframe", "is-loaded");
+        iframe.classList.add("booking-iframe");
+
+        const revealBookingForm = () => {
+          iframe.classList.add("is-loaded");
+          partnerPromptMask?.classList.add("is-active");
+          maskResizeReadyAt = performance.now() + 2000;
+          const loading = document.querySelector("[data-booking-loading]");
+          if (!loading) return;
+          loading.classList.add("is-hidden");
+          loading.setAttribute("aria-hidden", "true");
+        };
+
+        iframe.addEventListener("load", revealBookingForm, { once: true });
+      });
+
+      window.addEventListener("message", (event) => {
+        if (event.origin !== "https://order.goloadup.com" || !event.data) return;
+
+        if (event.data.type === "resizeIframe") {
+          const nextHeight = Number.parseInt(event.data.height, 10);
+          if (!Number.isFinite(nextHeight)) return;
+          if (!maskResizeReadyAt || performance.now() < maskResizeReadyAt) {
+            initialIframeHeight = nextHeight;
+          } else if (
+            initialIframeHeight !== null &&
+            Math.abs(nextHeight - initialIframeHeight) > 60
+          ) {
+            partnerPromptMask?.classList.remove("is-active");
+          }
+        }
+
+        if (["scrollToPosition", "completed_order", "goToPath"].includes(event.data.type)) {
+          partnerPromptMask?.classList.remove("is-active");
+        }
       });
     })();
   </script>

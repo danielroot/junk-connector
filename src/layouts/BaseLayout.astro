@@ -67,6 +67,14 @@ const currentPath = Astro.url.pathname;
     />
     {allSchemas.map((schema) => <script type="application/ld+json" set:html={jsonLd(schema)} />)}
     {
+      siteConfig.gtmContainerId && (
+        <script
+          is:inline
+          set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',${JSON.stringify(siteConfig.gtmContainerId)});`}
+        />
+      )
+    }
+    {
       siteConfig.gaMeasurementId && (
         <>
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.gaMeasurementId}`} />
@@ -80,6 +88,19 @@ const currentPath = Astro.url.pathname;
     <script src={withBasePath("/scripts/analytics-events.js")} defer></script>
   </head>
   <body>
+    {
+      siteConfig.gtmContainerId && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${siteConfig.gtmContainerId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+            title="Google Tag Manager"
+          />
+        </noscript>
+      )
+    }
     {
       !hideChrome && (
         <>
@@ -779,6 +800,7 @@ const currentPath = Astro.url.pathname;
 
   .booking-embed-shell {
     position: relative;
+    isolation: isolate;
     width: 100%;
     height: 100%;
     min-height: 0;
@@ -791,6 +813,8 @@ const currentPath = Astro.url.pathname;
 
   #quote-form,
   .quote-form-shell {
+    position: relative;
+    z-index: 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -823,6 +847,36 @@ const currentPath = Astro.url.pathname;
     color: var(--ink);
     text-align: center;
     animation: booking-loading-sheen 1.6s ease-in-out infinite;
+    transition: opacity 240ms ease, visibility 240ms ease;
+  }
+
+  .booking-loading.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .booking-partner-prompt-mask {
+    position: absolute;
+    z-index: 10;
+    top: 459px;
+    left: 50%;
+    width: min(30rem, calc(100% - 2rem));
+    height: 42px;
+    transform: translateX(-50%);
+    background: #f8fafb;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .booking-partner-prompt-mask.is-active {
+    opacity: 1;
+  }
+
+  @media (max-width: 767px) {
+    .booking-partner-prompt-mask {
+      top: 532px;
+    }
   }
 
   .booking-loading-spinner {

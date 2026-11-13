@@ -1,7 +1,8 @@
 export const siteConfig = {
   name: "Junk Connector",
   baseUrl: import.meta.env.PUBLIC_SITE_URL || "https://junkconnector.example",
-  gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "",
+  gaMeasurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-Q58117Z8TS",
+  gtmContainerId: import.meta.env.PUBLIC_GTM_CONTAINER_ID || "GTM-PV4NJRXM",
   defaultTitle: "Junk Connector | Book Junk Removal Online",
   defaultDescription:
     "Find local junk removal information, prepare your items, and start booking a pickup online.",
